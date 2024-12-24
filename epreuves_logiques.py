@@ -170,5 +170,20 @@ def jeu_tictactoe():
         print("Match nul, égalité !")
         return False
 
-jeu_nim()
-jeu_tictactoe()
+####### Bataille navale #######
+
+def suiv(joueur):
+    return 1 - joueur
+
+
+def grille_vide():
+    grille = []
+    for i in range(3):
+        ligne = []
+        for j in range(3):
+            ligne.append(" ")
+        grille.append(ligne)
+    return grille
+
+
+print(grille_vide())
