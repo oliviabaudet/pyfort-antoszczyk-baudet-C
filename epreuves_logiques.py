@@ -1,8 +1,5 @@
 import random
 
-from pyexpat.errors import messages
-
-
 ####### Jeu des bâtonnets #######
 
 def affiche_batonnets(n):
@@ -324,4 +321,3 @@ def jeu_bataille_navale():
 jeu_nim()
 jeu_tictactoe()
 jeu_bataille_navale()
-
