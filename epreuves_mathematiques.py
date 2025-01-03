@@ -96,6 +96,19 @@ def epreuve_roulette_mathematique():
         return False
 
 
+def epreuve_math():
+    epreuves = [factorielle, equation, epreuve_math_premier, epreuve_roulette_mathematique]
+    epreuve = random.choice(epreuves)
+    return epreuve()
+
+
+if __name__ == "__main__":
+    resultat = epreuve_math()
+    if resultat:
+        return True
+    else:
+        return False
+
 
 
 
