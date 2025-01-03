@@ -6,7 +6,7 @@ from pyexpat.errors import messages
 ####### Jeu des bâtonnets #######
 
 def affiche_batonnets(n):
-    print("Bâtonnets restants:", "|"*n)
+    print("Bâtonnets restants:", "|"*n, f" ({n})")
 
 def joueur_retrait(n):
     joueur = 0
@@ -25,6 +25,9 @@ def maitre_retrait(n):
     return maitre
 
 def jeu_nim():
+    print(" ")
+    print("Jeu des batônnets\n")
+    print("Vous ne devez pas récupérer le dernier batônnet pour gagner")
     n = 20
     tour_joueur = True
     i = 0
@@ -151,6 +154,8 @@ def verifier_resultat(grille):
     return False
 
 def jeu_tictactoe():
+    print(" ")
+    print("Jeu de tictactoe\n")
     grille = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
     affiche_grille(grille)
     i = 0
@@ -315,5 +320,8 @@ def jeu_bataille_navale():
         print("Le maître a gagné !")
         return False
 
+
+jeu_nim()
+jeu_tictactoe()
 jeu_bataille_navale()
 
