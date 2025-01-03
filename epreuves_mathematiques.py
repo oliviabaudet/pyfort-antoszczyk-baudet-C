@@ -1,6 +1,6 @@
-###factorielle###
 import random
-from operator import truediv
+
+####### factorielle #######
 
 def factorielle(n):
     if n == 0:
@@ -9,32 +9,46 @@ def factorielle(n):
     for i in range(2, n+1):
         res *= i
     return res
-n = random.randint(1,10)
-print(n)
-print(factorielle(n))
+
+def epreuve_math_factorielle():
+    n = random.randint(1,10)
+    fact = factorielle(n)
+    print(f"Épreuve de Mathématiques: Calculer la factorielle de {n}.")
+    rep = int(input("Votre réponse: "))
+    if fact == rep:
+        print("Correct! Vous gagnez une clé.")
+        return True
+    else:
+        print("Incorrect, vous avez perdu.")
+        print("La bonne réponse était", fact)
+        return False
 
 
-###equation_linaire###
-import random
-def lineaire():
+####### equation linaire #######
+
+def resoudre_equation_lineaire():
     a = random.randint(1,10)
     b = random.randint(1,10)
     x = -b/a
     liste = [a,b,x]
     return liste
 
-def equation():
-    liste =  lineaire()
-    print("Résoudre l'équation a*x + b = 0.")
+def epreuve_math_equation():
+    liste =  resoudre_equation_lineaire()
+    a,b,x = liste
+    print(f"Épreuve de Mathématiques: Résoudre l'équation {a}x + {b} = 0.")
     reponse = float(input("Quelle est la valeur de x:"))
     if reponse == x:
+        print("Correct! Vous gagnez une clé.")
         return True
     else:
+        print("Incorrect, vous avez perdu.")
+        print("La bonne réponse était", x)
         return False
 
 
-###nombres premiers###
-import random
+####### nombres premiers #######
+
 def est_premier(n):
     i = 2
     while i <= n and n%i != 0:
