@@ -1,5 +1,8 @@
 import random
 
+from pyexpat.errors import messages
+
+
 ####### Jeu des bâtonnets #######
 
 def affiche_batonnets(n):
@@ -185,5 +188,131 @@ def grille_vide():
         grille.append(ligne)
     return grille
 
+def affiche_grille_bateau(grille, message):
+    print(message)
+    print(f"| {grille[0][0]} | {grille[0][1]} | {grille[0][2]} |")
+    print(f"| {grille[1][0]} | {grille[1][1]} | {grille[1][2]} |")
+    print(f"| {grille[2][0]} | {grille[2][1]} | {grille[2][2]} |")
+    print("-------------")
 
-print(grille_vide())
+def demande_position():
+    ligne = -1
+    while ligne < 0 or ligne > 2:
+        ligne = int(input("Saisir la ligne sur laquelle vous voulez jouer (0, 1 ou 2) : "))
+        if ligne < 0 or ligne > 2:
+            print("Votre saisie est incorrecte, veuillez saisir un nombre entre 0 et 2")
+    colonne = -1
+    while colonne < 0 or colonne > 2:
+        colonne = int(input("Saisir la colonne sur laquelle vous voulez jouer (0, 1 ou 2) : "))
+        if colonne < 0 or colonne > 2:
+            print("Votre saisie est incorrecte, veuillez saisir un nombre entre 0 et 2")
+    tuple = (ligne, colonne)
+    return tuple
+
+def init():
+    grille = grille_vide()
+    message = "Voici la grille où vous devez placer vos bateaux"
+    affiche_grille_bateau(grille, message)
+    libre = []
+    for i in range(len(grille)):
+        for j in range(len(grille)):
+            if grille[i][j] == " ":
+                libre.append((i, j))
+
+    print("Choisissez la poisition de votre premier bateau")
+    position = (-1, -1)
+    while position not in libre:
+        position = demande_position()
+        if position not in libre:
+            print("La position est déjà occupée")
+    grille[position[0]][position[1]] = "B"
+
+    libre = []
+    for i in range(len(grille)):
+        for j in range(len(grille)):
+            if grille[i][j] == " ":
+                libre.append((i, j))
+
+    print("Choisissez la poisition de votre second bateau")
+    while position not in libre:
+        position = demande_position()
+        if position not in libre:
+            print("La position est déjà occupée")
+    grille[position[0]][position[1]] = "B"
+
+    return grille
+
+def tour(joueur,grille_tirs_joueur,grille_adversaire):
+    if joueur == 0:
+        coordonnees = demande_position()
+        libre = []
+        for i in range(3):
+            for j in range(3):
+                if grille_tirs_joueur[i][j] == " ":
+                    libre.append((i, j))
+        while coordonnees not in libre:
+            print("Vous avez déjà tiré à cet endroit, choisissez une autre position.")
+            coordonnees = demande_position()
+
+    else :
+        libre = []
+        for i in range(3):
+            for j in range(3):
+                if grille_tirs_joueur[i][j] == " ":
+                    libre.append((i,j))
+        coordonnees = libre[random.randint(0,len(libre)-1)]
+        print("Le maître du jeu tire en position ", coordonnees)
+    if grille_adversaire[coordonnees[0]][coordonnees[1]] == "B":
+        print("Touché coulé !")
+        grille_tirs_joueur[coordonnees[0]][coordonnees[1]] = "x"
+    else:
+        print("Dans l'eau...")
+        grille_tirs_joueur[coordonnees[0]][coordonnees[1]] = "."
+
+def gagne(grille_tirs_joueur):
+    compteur = 0
+    for i in range(3):
+        for j in range(3):
+            if grille_tirs_joueur[i][j] == "x":
+                compteur += 1
+    return compteur == 2
+
+def jeu_bataille_navale():
+    print(" ")
+    print("Jeu de la bataille navale.\n")
+    print("Chaque joueur doit placer 2 bateaux sur une grille de 3x3.")
+    print("Les bateaux sont représentés par 'B' et les tirs manqués par '.'. ")
+    print("Les bateaux coulés sont marqués par 'x'.")
+    grille_bateau_joueur = init()
+    grille_bateau_maitre = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+    grille_bateau_maitre[random.randint(0, 2)][random.randint(0, 2)] = "B"
+    x, y = random.randint(0, 2), random.randint(0, 2)
+    while grille_bateau_maitre[x][y] == "B":
+        x, y = random.randint(0, 2), random.randint(0, 2)
+    grille_bateau_maitre[x][y] = "B"
+    affiche_grille_bateau(grille_bateau_joueur, "Découvrez votre grille de jeu avec vos bateaux :")
+    grille_tirs_joueur = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+    grille_tirs_maitre = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+    joueur = 1
+    fin = False
+    while not fin:
+        joueur = suiv(joueur)
+        if joueur == 0:
+            print("C'est à votre tour de faire feu !: ")
+            affiche_grille_bateau(grille_tirs_joueur, "Rappel de l'historique des tirs que vous avez effectués :")
+            tour(joueur, grille_tirs_joueur, grille_bateau_maitre)
+            fin = gagne(grille_tirs_joueur)
+        else:
+            print("C'est le tour du maître du jeu : ")
+            affiche_grille_bateau(grille_tirs_maitre, "Rappel de l'historique des tirs du maître :")
+            tour(joueur, grille_tirs_maitre, grille_bateau_joueur)
+            fin = gagne(grille_tirs_maitre)
+
+    if gagne(grille_tirs_joueur):
+        print("Le joueur a gagné !")
+        return True
+    else:
+        print("Le maître a gagné !")
+        return False
+
+jeu_bataille_navale()
