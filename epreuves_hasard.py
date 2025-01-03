@@ -9,7 +9,8 @@ def bonneteau():
     print("Bonneteaux disponibles : {}".format(', '.join(bonneteaux)))
 
     max = 2
-    for tentative in range(1, max + 1):
+    tentative = 1
+    while tentative <= max:
         lettre = random.choice(bonneteaux)
         print("Tentative {}/{} :".format(tentative, max))
         choix = input("Choisissez un bonneteau({}): ".format(','.join(bonneteaux))).strip().lower()
@@ -22,7 +23,7 @@ def bonneteau():
             else:
                 print("Votre choix n'est pas valide.")
             tentative += 1
-    print("Vous avez perdu, la clé se trouvait sous le bonneteau {}.".format(choix))
+    print("Vous avez perdu, la clé se trouvait sous le bonneteau {}.".format(lettre))
     return False
 
 
