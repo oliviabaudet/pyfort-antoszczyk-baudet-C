@@ -20,7 +20,7 @@ def enigme_pere_fouras():
     while essais > 0:
         reponse = input("Quel est votre réponse : ")
         if reponse.lower() == enigme[1].lower():
-            print("Bravo, vous avez trouvé le bon mot.")
+            print("Bravo, vous avez trouvé le bon mot. Vous remportez une clé")
             return True
         essais -= 1
         print(f"Mauvaise réponse. Il vous reste {essais} essais")

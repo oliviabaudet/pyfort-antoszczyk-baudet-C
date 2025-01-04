@@ -4,6 +4,9 @@ import random
 ####### Salle de trésor #######
 
 def salle_de_tresor():
+    print(" ")
+    print("Maintenant que vous avez obtenus toutes les clés, vous vous trouvez devant la salle des trésors.")
+    print("Plusieurs mots vont vous être donnés, il faudra alors trouver le bon mot pour gagner.")
     essais = 3
     with open('data/indicesSalle.json', 'r', encoding='utf-8') as f:
         enigmes = json.load(f)
@@ -29,6 +32,7 @@ def salle_de_tresor():
             essais -=1
     if not rep :
         print("Vous avez perdu. La réponse était", mot)
+        print("Vous ferez peut être mieux la prochaine fois...")
     else:
-        print("Bravo vous avez trouvé le mot clé !")
-
+        print("Bravo vous avez trouvé le mot clé, vous remportez le jeu !")
+    print("Merci d'avoir joué !")

@@ -44,7 +44,7 @@ def jeu_nim():
         print("Le joueur a retiré le dernier bâtonnet. Le maitre gagne !")
         return False
     else:
-        print("Le maître du jeu a retiré le dernier bâtonnet. Le joueur gagne !")
+        print("Le maître du jeu a retiré le dernier bâtonnet. Vous remportez une clé !")
         return True
 
 
@@ -166,7 +166,7 @@ def jeu_tictactoe():
             affiche_grille(grille)
         i += 1
     if verifier_victoire(grille, "X"):
-        print("Le joueur a gagné !")
+        print("Vous avez gagné, vous remportez une clé !")
         return True
     if verifier_victoire(grille, "O"):
         print("Le maître a gagné !")
@@ -311,7 +311,7 @@ def jeu_bataille_navale():
             fin = gagne(grille_tirs_maitre)
 
     if gagne(grille_tirs_joueur):
-        print("Le joueur a gagné !")
+        print("Vous avez gagné, vous remportez une clé !")
         return True
     else:
         print("Le maître a gagné !")
