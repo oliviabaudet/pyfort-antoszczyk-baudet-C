@@ -1,5 +1,5 @@
 import json
-from random import *
+import random
 
 ####### Père Fouras #######
 
@@ -14,7 +14,7 @@ def charger_enigmes(fichier):
 
 def enigme_pere_fouras():
     enigmes = charger_enigmes("enigmesPF.json")
-    enigme = enigmes[randint(0, len(enigmes))]
+    enigme = enigmes[random.randint(0, len(enigmes))]
     essais = 3
     print(enigme[0])
     while essais > 0:
@@ -26,3 +26,5 @@ def enigme_pere_fouras():
         print(f"Mauvaise réponse. Il vous reste {essais} essais")
     print("Vous avez échoué. La réponse correcte était", enigme[1])
     return False
+
+enigme_pere_fouras()
