@@ -66,40 +66,57 @@ def premier_plus_proche(n):
 def  epreuve_math_premier():
     n = random.randint(10,20)
     solution = premier_plus_proche(n)
-    print("trouver le nombre le plus proche de", n)
-    reponse = int(input("entrer un nombre:"))
+    print("Épreuve de Mathématiques: Trouver le nombre premier supérieur ou égal le plus proche de", n)
+    reponse = int(input("Votre réponse: "))
     if reponse == solution:
+        print("Correct! Vous gagnez une clé.")
         return True
     else:
+        print("Incorrect, vous avez perdu.")
+        print("La bonne réponse était", solution)
         return False
 
-###roulette mathématique###
+
+####### roulette mathématique #######
+
 import random
 def epreuve_roulette_mathematique():
     n= [random.randint(1,20) for i in range(5)]
+    print("Nombres sur la roulette :", n)
     operation = random.choice(['+','-','*'])
     if operation == '+':
-        solution = sum(n)
+        print("Calculez le résultat en combinant ces nombres avec une addition")
+        solution = 0
+        for i in n[1:]:
+            solution += i
     elif operation == '-':
+        print("Calculez le résultat en combinant ces nombres avec une soustraction")
         solution = n[0]
         for i in n[1:]:
-            solution -= n
+            solution -= i
     elif operation == '*':
+        print("Calculez le résultat en combinant ces nombres avec une multiplication")
         solution = 1
         for i in n:
-            solution *= n
-    print()
-    reponse = int(input("entrer un nombre:"))
-    if solution == reponse:
+            solution *= i
+    reponse = int(input("Votre réponse : "))
+    if reponse == solution:
+        print("Correct! Vous gagnez une clé.")
         return True
     else:
+        print("Incorrect, vous avez perdu.")
+        print("La bonne réponse était", solution)
         return False
 
 
+####### épreuve mathématique #######
+
 def epreuve_math():
-    epreuves = [epreuve_math_factorielle(), epreuve_math_equation, epreuve_math_premier, epreuve_roulette_mathematique]
+    epreuves = [epreuve_math_factorielle, epreuve_math_equation, epreuve_math_premier, epreuve_roulette_mathematique]
     epreuve = random.choice(epreuves)
-    return epreuve()
+    if epreuve():
+        return True
+    return False
 
 
 
