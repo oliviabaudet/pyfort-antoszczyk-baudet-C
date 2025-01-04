@@ -29,7 +29,7 @@ def epreuve_math_factorielle():
 def resoudre_equation_lineaire():
     a = random.randint(1,10)
     b = random.randint(1,10)
-    x = -b/a
+    x = round(-b/a, 2)
     liste = [a,b,x]
     return liste
 
@@ -37,7 +37,7 @@ def epreuve_math_equation():
     liste =  resoudre_equation_lineaire()
     a,b,x = liste
     print(f"Épreuve de Mathématiques: Résoudre l'équation {a}x + {b} = 0.")
-    reponse = float(input("Quelle est la valeur de x:"))
+    reponse = float(input("Quelle est la valeur de x (arrondi au centième près):"))
     if reponse == x:
         print("Correct! Vous gagnez une clé.")
         return True
@@ -45,7 +45,6 @@ def epreuve_math_equation():
         print("Incorrect, vous avez perdu.")
         print("La bonne réponse était", x)
         return False
-
 
 ####### nombres premiers #######
 
@@ -63,53 +62,57 @@ def premier_plus_proche(n):
         return n
     return premier_plus_proche(n+1)
 
-def  epreuve_math_premier():
+def epreuve_math_premier():
     n = random.randint(10,20)
     solution = premier_plus_proche(n)
-    print("trouver le nombre le plus proche de", n)
-    reponse = int(input("entrer un nombre:"))
+    print("Épreuve de Mathématiques: Trouver le nombre premier supérieur ou égal le plus proche de ", n)
+    reponse = int(input("Votre réponse: "))
     if reponse == solution:
+        print("Correct! Vous gagnez une clé.")
         return True
     else:
+        print("Incorrect, vous avez perdu.")
+        print("La bonne réponse était", solution)
         return False
 
-###roulette mathématique###
-import random
+
+####### roulette mathématique #######
+
 def epreuve_roulette_mathematique():
-    n= [random.randint(1,20) for i in range(5)]
+    n = [random.randint(1,20) for i in range(5)]
+    print("Nombres sur la roulette :", n)
     operation = random.choice(['+','-','*'])
     if operation == '+':
-        solution = sum(n)
+        solution = 0
+        for i in n:
+            solution += i
+        print("Calculez le résultat en combinant ces nombres avec une addition")
     elif operation == '-':
         solution = n[0]
         for i in n[1:]:
-            solution -= n
+            solution -= i
+        print("Calculez le résultat en combinant ces nombres avec une soustraction")
     elif operation == '*':
         solution = 1
         for i in n:
-            solution *= n
-    print()
-    reponse = int(input("entrer un nombre:"))
-    if solution == reponse:
+            solution *= i
+        print("Calculez le résultat en combinant ces nombres avec une multiplication")
+    reponse = int(input("Votre réponse : "))
+    if reponse == solution:
+        print("Correct! Vous gagnez une clé.")
         return True
     else:
+        print("Incorrect, vous avez perdu.")
+        print("La bonne réponse était", solution)
         return False
 
+
+####### Epreuve de mathématique #######
 
 def epreuve_math():
-    epreuves = [factorielle, equation, epreuve_math_premier, epreuve_roulette_mathematique]
+    epreuves = [epreuve_math_factorielle, epreuve_math_equation, epreuve_math_premier, epreuve_roulette_mathematique]
     epreuve = random.choice(epreuves)
     return epreuve()
-
-
-if __name__ == "__main__":
-    resultat = epreuve_math()
-    if resultat:
-        return True
-    else:
-        return False
-
-
 
 
 

@@ -317,7 +317,9 @@ def jeu_bataille_navale():
         print("Le maître a gagné !")
         return False
 
+####### Epreuve de logique #######
 
-jeu_nim()
-jeu_tictactoe()
-jeu_bataille_navale()
+def epreuve_logique():
+    epreuves = [jeu_nim, jeu_tictactoe, jeu_bataille_navale]
+    epreuve = random.choice(epreuves)
+    return epreuve()

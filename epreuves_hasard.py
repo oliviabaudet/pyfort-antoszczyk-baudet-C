@@ -26,5 +26,6 @@ def bonneteau():
     print("Vous avez perdu, la clé se trouvait sous le bonneteau {}.".format(lettre))
     return False
 
+def jeu_lance_des():
 
 
