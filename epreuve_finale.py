@@ -24,11 +24,11 @@ def salle_de_tresor():
         if reponse.upper() == mot:
             rep = True
         else:
-            print(indices[6-essais])
+            if essais != 1:
+                print(indices[6-essais])
             essais -=1
     if not rep :
-        print("La réponse était", mot)
+        print("Vous avez perdu. La réponse était", mot)
     else:
         print("Bravo vous avez trouvé le mot clé !")
 
-salle_de_tresor()

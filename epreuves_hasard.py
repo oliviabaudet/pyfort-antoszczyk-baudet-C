@@ -64,5 +64,3 @@ def epreuve_hasard():
     epreuves = [jeu_lance_des, bonneteau]
     epreuve = random.choice(epreuves)
     return epreuve()
-
-epreuve_hasard()
