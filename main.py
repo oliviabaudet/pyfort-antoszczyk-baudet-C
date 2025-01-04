@@ -23,9 +23,6 @@ def jeu():
         if victoire:
             cles += 1
             joueur["cles_gagnees"] += 1
-            print("Le joueur", joueur["nom"], "a gagné une clé\n")
-        else:
-            print("Le joueur",joueur["nom"], "a raté l'épreuve\n")
         print(f"Vous possédez {cles} clé(s).")
         #historique(victoire, numero, joueur)
     salle_de_tresor()

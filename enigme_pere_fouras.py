@@ -13,6 +13,8 @@ def charger_enigmes(fichier):
 
 
 def enigme_pere_fouras():
+    print(" ")
+    print("Répondez correctement à l'énigme suivante pour gagner une clé.\n")
     enigmes = charger_enigmes("enigmesPF.json")
     enigme = enigmes[random.randint(0, len(enigmes))]
     essais = 3
