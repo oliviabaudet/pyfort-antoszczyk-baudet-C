@@ -11,9 +11,10 @@ def factorielle(n):
     return res
 
 def epreuve_math_factorielle():
+    print(" ")
     n = random.randint(1,10)
     fact = factorielle(n)
-    print(f"Épreuve de Mathématiques: Calculer la factorielle de {n}.")
+    print(f"Épreuve de Mathématiques: \nCalculer la factorielle de {n}.")
     rep = int(input("Votre réponse: "))
     if fact == rep:
         print("Correct! Vous gagnez une clé.")
@@ -29,15 +30,16 @@ def epreuve_math_factorielle():
 def resoudre_equation_lineaire():
     a = random.randint(1,10)
     b = random.randint(1,10)
-    x = -b/a
+    x = round(-b/a,2)
     liste = [a,b,x]
     return liste
 
 def epreuve_math_equation():
+    print(" ")
     liste =  resoudre_equation_lineaire()
     a,b,x = liste
-    print(f"Épreuve de Mathématiques: Résoudre l'équation {a}x + {b} = 0.")
-    reponse = float(input("Quelle est la valeur de x:"))
+    print(f"Épreuve de Mathématiques: \nRésoudre l'équation {a}x + {b} = 0.")
+    reponse = float(input("Quelle est la valeur de x (arrondie au centième près) :"))
     if reponse == x:
         print("Correct! Vous gagnez une clé.")
         return True
@@ -64,9 +66,10 @@ def premier_plus_proche(n):
     return premier_plus_proche(n+1)
 
 def  epreuve_math_premier():
+    print(" ")
     n = random.randint(10,20)
     solution = premier_plus_proche(n)
-    print("Épreuve de Mathématiques: Trouver le nombre premier supérieur ou égal le plus proche de", n)
+    print("Épreuve de Mathématiques: \nTrouver le nombre premier supérieur ou égal le plus proche de", n)
     reponse = int(input("Votre réponse: "))
     if reponse == solution:
         print("Correct! Vous gagnez une clé.")
@@ -81,6 +84,8 @@ def  epreuve_math_premier():
 
 import random
 def epreuve_roulette_mathematique():
+    print(" ")
+    print("Epreuve de la roulette mathématique\n")
     n= [random.randint(1,20) for i in range(5)]
     print("Nombres sur la roulette :", n)
     operation = random.choice(['+','-','*'])
