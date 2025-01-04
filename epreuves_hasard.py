@@ -1,43 +1,46 @@
 import random
 
 ####### Bonneteau #######
-"""
+
 def bonneteau():
     bonneteaux = ['A','B', 'C']
-
-    print("Bonjour, bienvenue dans le jeu des bonneteaux.")
+    print(" ")
+    print("Bonjour, bienvenue dans le jeu des bonneteaux.\n")
     print("Vous devez deviner sous quel bonneteau (A, B ou C) se cache la clé ")
-    print("Vous avez deux essais. Bon courage !")
+    print("Vous avez deux essais.")
+    print("Après chaques essais, la clé sera remélangée aléatoirement sous un des bonneteaux")
+    print("Bon courage !")
     print("Bonneteaux disponibles : {}".format(','.join(bonneteaux)))
 
-    max = 2
-    for i in range(1, max + 1):
-        lettre = random.choice(bonneteaux)
-        tentative = max
-    while tentative <= max:
-        print("Tentative {}/{} :".format(tentative, max))
-        choix = input("Choisissez un bonneteau({}): ".format(','.join(bonneteaux))).lower()
-            if choix in lettre:
-                if choix == lettre:
-                    print("Bravo! vous avez touvé la clé sous le bonneteau {}." .format(choix))
-                    return True
-                else:
-                print("Vous n'avez pas trouvé le bon bonneteau.")
-            else:
-                print("Votre choix n'est pas valide.")
-            tentative -= 1
-    print("Vous avez perdu, la clé se trouvait sous le bonneteau {}.".format(lettre))
+    essais = 2
+    while essais > 0:
+        solution = random.choice(bonneteaux)
+        print("Tentative {}/2 :".format(2 - essais + 1))
+        choix = 'D'
+        while choix not in bonneteaux:
+            choix = input("Choisissez un bonneteau({}): ".format(','.join(bonneteaux))).upper()
+            if choix not in bonneteaux:
+                print("Votre choix n'est pas valide, Veuillez réessayer.")
+        if choix == solution:
+            print("Bravo! vous avez touvé la clé sous le bonneteau {}." .format(solution))
+            return True
+        else:
+            print("Vous n'avez pas trouvé le bon bonneteau.")
+        essais -= 1
+    print("Vous avez perdu, la clé se trouvait sous le bonneteau {}.".format(solution))
     return False
-"""
 
 
 ####### Lancé de dé #######
 
 def jeu_lance_des():
+    print(" ")
+    print("Bonjour, bienvenue dans le jeu des dés.\n")
+    print("Le premier joueur a obtenir un 6 gagne la partie.")
     essais = 3
     while essais != 0:
         print(f"Il vous reste {essais} essais.")
-        input("Appuyez sur la touche 'Entrée'.")
+        input("Appuyez sur la touche 'Entrée' pour lancer vos dés.")
         des_joueur = (random.randint(1, 6), random.randint(1, 6))
         print("Voici les valeurs que vous avez obtenues:", des_joueur[0], "et" ,des_joueur[1])
         if des_joueur[0] == 6 or des_joueur[1] == 6:
@@ -48,17 +51,18 @@ def jeu_lance_des():
         if des_maitre[0] == 6 or des_maitre[1] == 6:
             print("Le maître du jeu a gagné")
             return False
-        print("Passons au prochain essai.")
         essais -= 1
+        if essais != 0:
+            print("Passons au prochain essai.")
     print("Aucun joueur n'a obtenu un 6 après trois essais, c'est un match nul.")
     return False
 
 
+####### Epreuve de hasard #######
 
-####### Lancé de dé #######
-"""
 def epreuve_hasard():
     epreuves = [jeu_lance_des, bonneteau]
     epreuve = random.choice(epreuves)
     return epreuve()
-"""
+
+epreuve_hasard()

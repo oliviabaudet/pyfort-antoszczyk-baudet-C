@@ -109,7 +109,7 @@ def epreuve_roulette_mathematique():
         return False
 
 
-####### épreuve mathématique #######
+####### Epreuve de mathématique #######
 
 def epreuve_math():
     epreuves = [epreuve_math_factorielle, epreuve_math_equation, epreuve_math_premier, epreuve_roulette_mathematique]
