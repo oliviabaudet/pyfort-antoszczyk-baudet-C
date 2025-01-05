@@ -57,7 +57,6 @@ def jeu_lance_des():
     print("Aucun joueur n'a obtenu un 6 après trois essais, c'est un match nul.")
     return False
 
-
 ####### Epreuve de hasard #######
 
 def epreuve_hasard():

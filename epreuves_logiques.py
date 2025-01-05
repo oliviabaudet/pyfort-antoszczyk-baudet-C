@@ -24,7 +24,7 @@ def maitre_retrait(n):
 def jeu_nim():
     print(" ")
     print("Jeu des batônnets\n")
-    print("Vous ne devez pas récupérer le dernier batônnet pour gagner")
+    print("Vous ne devez pas récupérer le dernier bâtonnet pour gagner")
     n = 20
     tour_joueur = True
     i = 0
